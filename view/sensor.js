@@ -1,16 +1,16 @@
 const template = require('./template');
 const header = template.header();
-const TEMP_LOW = 18.0;
-const TEMP_HIGH = 20.0;
+const TEMP_LOW = 19.0;
+const TEMP_HIGH = 26.0;
 const HUMID_LOW = 20.0;
-const HUMID_HIGH = 28.0;
-const CDS_LOW = 65.0;
-const CDS_HIGH = 90.0;
+const HUMID_HIGH = 24.0;
+const CDS_LOW = 380.0;
+const CDS_HIGH = 600.0;
 const DIST_LOW = 10.0;
 const DIST_HIGH = 30.0
 const ok = `<span style="color:green">Good</span>`;
-const up = `<span style="color:blue">Danger</span>`;
-const down = `<span style="color:red">Bad</span>`;
+const up = `<span style="color:red">Danger</span>`;
+const down = `<span style="color:dark">Bad</span>`;
 
 module.exports.sensor = function(navBar, menuLink, sensor) {
     let temp = sensor.temperature;
@@ -73,25 +73,30 @@ module.exports.sensor = function(navBar, menuLink, sensor) {
                         <tr>
                                 <td><i class="fas fa-thermometer-half"></i>&nbsp;&nbsp;온도</td>
                                 <td>${TEMP_LOW} ~ ${TEMP_HIGH}</td>
-                                <td>${temp}</td><td>℃</td>
+                                <td>${temp}</td>
+                                <td>℃</td>
                                 <td>${tempSign}</td>
                             </tr>
                             <tr>
                                 <td><i class="fas fa-tint"></i>&nbsp;&nbsp;습도</td>
                                 <td>${HUMID_LOW} ~ ${HUMID_HIGH}</td>
-                                <td>${humid}</td><td>%</td>
+                                <td>${humid}</td>
+                                <td>%</td>
                                 <td>${humidSign}</td>
                             </tr>
                             <tr>
                                 <td><i class="far fa-lightbulb"></i>&nbsp;&nbsp;조도</td>
                                 <td>${CDS_LOW} ~ ${CDS_HIGH}</td>
-                                <td>${cds}</td><td>lux</td>
+                                <td>${cds}</td>
+                                <td>lux</td>
                                 <td>${cdsSign}</td>
                             </tr>
                             <tr>
                                 <td><i class="fas fa-ruler-vertical"></i>&nbsp;&nbsp;거리</td>
                                 <td>${DIST_LOW} ~ ${DIST_HIGH}</td>
-                                <td>${dist}</td><td>cm</td><td>${distSign}</td>
+                                <td>${dist}</td>
+                                <td>cm</td>
+                                <td>${distSign}</td>
                             </tr>
                         </tbody>
                     </table>

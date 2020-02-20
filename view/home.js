@@ -2,11 +2,11 @@ const template = require('./template');
 const header = template.header();
 
 const TEMP_LOW = 18.0;
-const TEMP_HIGH = 20.0;
+const TEMP_HIGH = 26.0;
 const HUMID_LOW = 20.0;
 const HUMID_HIGH = 28.0;
-const CDS_LOW = 65.0;
-const CDS_HIGH = 90.0;
+const CDS_LOW = 200.0;
+const CDS_HIGH = 500.0;
 const DIST_LOW = 10.0;
 const DIST_HIGH = 30.0
 
@@ -98,7 +98,7 @@ module.exports.home = function(navBar, menuLink, sensor, actuator) {
                         </tr>
                         <tr>
                             <td><i class="far fa-lightbulb"></i>&nbsp;&nbsp;조도</td>
-                            <td>0 ~ 100</td>
+                            <td>0 ~ 1000</td>
                             <td style="text-align: center;">
                                 <div class="progress" style="height: 25px; width: 400px">
                                     <div class="progress-bar ${cdsSign}" role="progressbar" style="width: ${cds/100*100}%" aria-valuemin="0" aria-valuemax="100">${cds}</div>

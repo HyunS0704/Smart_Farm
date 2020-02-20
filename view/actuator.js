@@ -1,7 +1,7 @@
 const template = require('./template');
 const header = template.header();
 
-module.exports.actuator = function(navBar, menuLink, actuator) {
+module.exports.actuator = function(navBar, menuLink, actuator, Periodical, Temporary) {
     let curR = actuator.redLED;
     let curG = actuator.greenLED;
     let curB = actuator.blueLED;
@@ -9,6 +9,15 @@ module.exports.actuator = function(navBar, menuLink, actuator) {
     let aTime = actuator.aTime;
     let reason = actuator.reason;
     let aUid = actuator.uid;
+
+    if(reason == Periodical)
+        Periodical = 'selected';
+    else
+        Periodical ='';
+    if(reason == Temporary)
+        Temporary = 'selected';
+    else
+        Temporary = '';
 
     let radio = '';
     if (relay == 0) 
@@ -65,10 +74,28 @@ module.exports.actuator = function(navBar, menuLink, actuator) {
                             </td></tr>
                         <tr><td style="text-align: center;">변경 사유</td>
                             <td style="text-align: center;">
-                                <select class="form-control" name="reason">
-                                    <option value="Periodical" selected>정기적</option>
-                                    <option value="Temporary">임시적</option>
+                                <select class="form-control" name="reason" onChange="showRasonBox(value)">
+                                    <option value="Periodical" ${Periodical}>정기적</option>
+                                    <option value="Temporary" ${Temporary}>임시적</option>
                                 </select>
+                            </td>
+                            <script type="text/javascript">
+                                function showRasonBox(vlaue) 
+                                {
+                                    if(value == "Periodical")
+                                    {
+                                        document.getElementById("reasonBoxFrame").style.display = "none";
+                                    }
+                                    else if(vlaue == "Temporary")
+                                    {
+                                        document.getElementById("reasonBoxFrame").style.display = "block";
+                                    }
+                                }
+                            </script>
+                            <td colspan="2" text-align: right;">
+                                <div class="form-group" style="display:none" name="reasonBoxFrame" id="reasonBoxFrame">
+                                <textarea class="form-control" row="2" id="resonBox" name="detail" palceholder="작동 이유"></textarea>
+                                </div>
                             </td></tr>
                         <tr><td colspan="2" style="text-align: center;"><button type="submit" class="btn btn-primary">작동</button></td></tr>
                     </table>
