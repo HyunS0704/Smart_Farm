@@ -24,6 +24,24 @@ router.get('/list', function(req, res) {            //로그인만 하면 누구
         });
     }
 });
+router.get('/gallery', function(req, res) {            //로그인만 하면 누구나 접근권한이 가능하다.
+    if(req.session.userId === undefined) {
+        let html = alert.alertMsg('시스템을 사용하려면 먼저 로그인하세요', '/');
+        res.send(html);
+    }
+    else {
+        wm.getWeather(function(weather) {
+            let navBar = template.navBar(false, weather, req.session.userName);
+            let menuLink = template.menuLink(4);
+            dbModule.getAllUsers(function(rows){
+                let view = require('./view/gallery');
+                let html =view.gallery(navBar, menuLink, rows);
+                //console.log(rows);
+                res.send(html);
+            });
+        });
+    }
+});
 router.get('/register', function(req, res) {        //admin(관리자)으로 로그인 해야 접근권한이 가능
     if(req.session.userId === undefined) {
         let html = alert.alertMsg('시스템을 사용하려면 먼저 로그인하세요', '/');

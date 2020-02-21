@@ -4,8 +4,8 @@ const TEMP_LOW = 19.0;
 const TEMP_HIGH = 26.0;
 const HUMID_LOW = 20.0;
 const HUMID_HIGH = 24.0;
-const CDS_LOW = 380.0;
-const CDS_HIGH = 600.0;
+const CDS_LOW = 100.0;
+const CDS_HIGH = 300.0;
 const DIST_LOW = 10.0;
 const DIST_HIGH = 30.0
 const ok = `<span style="color:green">Good</span>`;
